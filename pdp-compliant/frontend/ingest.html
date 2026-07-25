@@ -1,0 +1,33 @@
+<meta charset="UTF-8" />
+<title>Sentinel — New Complaint</title>
+<link rel="stylesheet" href="css/styles.css" />
+
+<div class="topbar">
+  <div class="brand"><span class="dot"></span>Sentinel <small>PDP-compliant LLM gateway</small></div>
+  <nav>
+    <a href="index.html">Queue</a>
+    <a href="ingest.html" class="active">New complaint</a>
+    <a href="dashboard.html">Compliance</a>
+  </nav>
+  <div id="token-settings"></div>
+</div>
+
+<main>
+  <h1>Submit a complaint</h1>
+  <div class="subtitle">F1: accepted as authenticated REST input, queued, processed asynchronously. Try including a NIK, phone number, or name to see detection and tokenization in the detail view.</div>
+
+  <div class="card">
+    <form id="ingest-form">
+      <div class="field-label">Complaint text</div>
+      <textarea id="text" rows="8" placeholder="Nama saya Budi Santoso, NIK saya 3171012303900021. ..."></textarea>
+      <div class="actions">
+        <button type="submit">Submit</button>
+        <button type="button" class="btn secondary" id="sample-btn">Fill sample complaint</button>
+      </div>
+    </form>
+    <div id="result" style="margin-top:14px"></div>
+  </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/ingest.js"></script>

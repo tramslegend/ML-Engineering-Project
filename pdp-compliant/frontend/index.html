@@ -1,0 +1,48 @@
+<meta charset="UTF-8" />
+<title>Sentinel — Complaint Triage</title>
+<link rel="stylesheet" href="css/styles.css" />
+
+<div class="topbar">
+  <div class="brand"><span class="dot"></span>Sentinel <small>PDP-compliant LLM gateway</small></div>
+  <nav>
+    <a href="index.html" class="active">Queue</a>
+    <a href="ingest.html">New complaint</a>
+    <a href="dashboard.html">Compliance</a>
+  </nav>
+  <div id="token-settings"></div>
+</div>
+
+<main>
+  <h1>Complaint queue</h1>
+  <div class="subtitle">All complaints, tokenized. Re-identification happens per-item, on demand, with a logged justification.</div>
+
+  <div class="stat-row" id="stats"></div>
+
+  <div class="card">
+    <form class="inline" style="margin-bottom:14px" id="filter-form">
+      <label>Status</label>
+      <select id="status-filter" style="background:var(--panel-2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 8px;">
+        <option value="">All</option>
+        <option value="pending_review">Pending review</option>
+        <option value="pending_detection_review">Pending detection review</option>
+        <option value="input_blocked">Input blocked</option>
+        <option value="output_blocked">Output blocked</option>
+        <option value="reviewed_accepted">Accepted</option>
+        <option value="reviewed_edited">Edited</option>
+        <option value="reviewed_rejected">Rejected</option>
+      </select>
+      <button type="submit">Filter</button>
+      <button type="button" class="btn secondary" id="refresh-btn">Refresh</button>
+    </form>
+    <table>
+      <thead>
+        <tr><th>Job</th><th>Status</th><th>Category</th><th>Severity</th><th>Age</th><th>Flags</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div id="empty" class="empty" style="display:none">No complaints match this filter.</div>
+  </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/list.js"></script>

@@ -1,0 +1,74 @@
+<meta charset="UTF-8" />
+<title>Sentinel — Compliance Dashboard</title>
+<link rel="stylesheet" href="css/styles.css" />
+
+<div class="topbar">
+  <div class="brand"><span class="dot"></span>Sentinel <small>PDP-compliant LLM gateway</small></div>
+  <nav>
+    <a href="index.html">Queue</a>
+    <a href="ingest.html">New complaint</a>
+    <a href="dashboard.html" class="active">Compliance</a>
+  </nav>
+  <div id="token-settings"></div>
+</div>
+
+<main>
+  <h1>Compliance &amp; operations</h1>
+  <div class="subtitle">DPO / operations-lead surface: data residency, incident scope, subject access, erasure, and runtime controls (F8, F5.2, F5.6).</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h2>Data residency report (F8.3)</h2>
+      <form class="inline" id="residency-form">
+        <label>From</label><input type="datetime-local" id="res-start" />
+        <label>To</label><input type="datetime-local" id="res-end" />
+        <button type="submit">Run</button>
+      </form>
+      <div id="residency-result" style="margin-top:12px"></div>
+    </div>
+
+    <div class="card">
+      <h2>Incident scope query (F8.5)</h2>
+      <div class="subtitle" style="margin-bottom:8px">"Which subjects were affected between T1 and T2" — must resolve within minutes for the 3×24h breach notification window.</div>
+      <form class="inline" id="incident-form">
+        <label>From</label><input type="datetime-local" id="inc-start" />
+        <label>To</label><input type="datetime-local" id="inc-end" />
+        <button type="submit">Run</button>
+      </form>
+      <div id="incident-result" style="margin-top:12px"></div>
+    </div>
+
+    <div class="card">
+      <h2>Subject access report (F8.4)</h2>
+      <form class="inline" id="subject-form">
+        <input type="text" id="subject-id" placeholder="subj_..." style="width:220px" />
+        <button type="submit">Look up</button>
+      </form>
+      <div id="subject-result" style="margin-top:12px"></div>
+    </div>
+
+    <div class="card">
+      <h2>Erasure demonstration (F3.6 / N19)</h2>
+      <div class="subtitle" style="margin-bottom:8px">Deletes every vault entry for a subject. Every token derived from that subject becomes permanently unresolvable, everywhere, immediately — this is the right-to-erasure guarantee (M9).</div>
+      <form class="inline" id="erase-form">
+        <input type="text" id="erase-subject-id" placeholder="subj_..." style="width:180px" />
+        <input type="text" id="erase-justification" placeholder="Justification (required)" style="width:220px" />
+        <button type="submit" class="btn danger">Erase</button>
+      </form>
+      <div id="erase-result" style="margin-top:12px"></div>
+    </div>
+
+    <div class="card">
+      <h2>Escalation controls (F5.2 / F5.6)</h2>
+      <div id="ops-config">Loading…</div>
+    </div>
+
+    <div class="card">
+      <h2>Cost (M6)</h2>
+      <div id="cost-result">Loading…</div>
+    </div>
+  </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
