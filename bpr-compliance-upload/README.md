@@ -8,33 +8,33 @@ Not a chatbot bolted onto a bank. The agent layer never gets raw database access
 
 ## Architecture
 
-![Architecture diagram](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance/static/arc.png)
+![Architecture diagram](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance-upload/static/arc.png)
 
 ---
 
 ## Screenshots
 
-![Dashboard](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance/static/b3.JPG)
+![Dashboard](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance-upload/static/b3.JPG)
 
-![Compliance Analysis — LangGraph SQL/Python agent chat](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance/static/b1.JPG)
+![Compliance Analysis — LangGraph SQL/Python agent chat](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance-upload/static/b1.JPG)
 
-![Screening Queue](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance/static/b2.JPG)
+![Screening Queue](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance-upload/static/b2.JPG)
 
-![Report Editor](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance/static/b4.JPG)
+![Report Editor](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance-upload/static/b4.JPG)
 
-![Audit Explorer](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance/static/b5.JPG)
+![Audit Explorer](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance-upload/static/b5.JPG)
 
 ### Live on AWS (Terraform, `ap-southeast-3`)
 
 The full infrastructure in [`infra/`](./infra) was actually applied to a real AWS account for this deployment — VPC, ALB, ECS Fargate, RDS, CloudFront, all 68 resources — then torn down with `terraform destroy` afterward. These are from that run:
 
-![RDS Postgres — available](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance/static/b6.JPG)
+![RDS Postgres — available](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance-upload/static/b6.JPG)
 
-![S3 buckets — frontend + Terraform state](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance/static/b7.JPG)
+![S3 buckets — frontend + Terraform state](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance-upload/static/b7.JPG)
 
-![ECS cluster and service](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance/static/b8.JPG)
+![ECS cluster and service](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance-upload/static/b8.JPG)
 
-![VPC resource map](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance/static/b9.JPG)
+![VPC resource map](https://raw.githubusercontent.com/MagicDash91/ML-Engineering-Project/main/bpr-compliance-upload/static/b9.JPG)
 
 ---
 
