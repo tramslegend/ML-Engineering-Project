@@ -1,0 +1,5 @@
+aws_region        = "ap-southeast-3"
+name_prefix       = "bpr-compliance-dev"
+jwt_secret        = "REPLACE_ME_do_not_commit_real_value"
+deepseek_api_key  = ""
+backend_image_tag = "latest"
