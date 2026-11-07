@@ -51,7 +51,12 @@ os.makedirs("static", exist_ok=True)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Global configuration
-GEMINI_API_KEY = "AIzaSyAMAYxkjP49QZRCg21zImWWAu7c3YHJ0a8"  # Replace with your key
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  # set in .env — never hardcode keys
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Global variables
@@ -1118,7 +1123,7 @@ if __name__ == "__main__":
     print("- Mixture of Experts analysis")
     print("- Interactive chat with documents")
     print("- Session management")
-    print("\nMake sure to set your GEMINI_API_KEY in the code!")
+    print("\nMake sure to set GEMINI_API_KEY in your .env file!")
     
     uvicorn.run(
         app, 

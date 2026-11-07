@@ -1,0 +1,15 @@
+# Secrets — never commit these
+.env
+.env.*
+!.env.example
+credentials*.json
+client_secret*.json
+token*.json
+token*.pickle
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

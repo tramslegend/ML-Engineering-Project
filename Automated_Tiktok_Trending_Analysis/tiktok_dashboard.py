@@ -41,7 +41,12 @@ sns.set_palette("husl")
 logging.basicConfig(level=logging.INFO)
 
 # Configure Google Gemini AI
-GEMINI_API_KEY = "AIzaSyAMAYxkjP49QZRCg21zImWWAu7c3YHJ0a8"
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  # set in .env — never hardcode keys
 GEMINI_MODEL = "gemini-2.0-flash-exp"
 
 logging.info("Configuring Google Gemini with API key")

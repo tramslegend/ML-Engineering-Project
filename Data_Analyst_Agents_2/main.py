@@ -69,6 +69,7 @@ load_dotenv()
 
 # === Configuration ===
 api_key = os.getenv("NVIDIA_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")  # set in .env — never hardcode keys
 
 client = OpenAI(
     base_url="https://integrate.api.nvidia.com/v1",
@@ -943,7 +944,7 @@ def DatabaseChatAgent(database_uri: str, query: str) -> str:
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.0-flash",
             temperature=0.7,
-            google_api_key="AIzaSyCowWFDIENMNDTBtGm5HkvWzeXG9SpIboI"
+            google_api_key=GOOGLE_API_KEY
         )
 
         # Create database connection
@@ -1321,7 +1322,7 @@ def initialize_research_tools():
         arxiv_tool = ArxivQueryRun(api_wrapper=ArxivAPIWrapper())
         
         # Note: You may need to set up Tavily API key
-        tavily_api_key = os.getenv("TAVILY_API_KEY", "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")
+        tavily_api_key = os.getenv("TAVILY_API_KEY")
         tavily_tool_instance = TavilySearchResults(k=3, tavily_api_key=tavily_api_key)
         
         tools = {
@@ -1379,7 +1380,7 @@ def tool_selection_node(state: ResearchState) -> ResearchState:
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.0-flash",
             temperature=0.2,
-            google_api_key="AIzaSyCowWFDIENMNDTBtGm5HkvWzeXG9SpIboI"
+            google_api_key=GOOGLE_API_KEY
         )
         result = llm.invoke(prompt)
         content = result.content.strip()
@@ -1479,7 +1480,7 @@ def enhanced_grade_node(state: ResearchState) -> ResearchState:
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.0-flash",
             temperature=0.1,
-            google_api_key="AIzaSyCowWFDIENMNDTBtGm5HkvWzeXG9SpIboI"
+            google_api_key=GOOGLE_API_KEY
         )
         result = llm.invoke(prompt)
         is_relevant = "yes" in result.content.lower()
@@ -1526,7 +1527,7 @@ def enhanced_generation_node(state: ResearchState) -> ResearchState:
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.0-flash",
             temperature=0.3,
-            google_api_key="AIzaSyCowWFDIENMNDTBtGm5HkvWzeXG9SpIboI"
+            google_api_key=GOOGLE_API_KEY
         )
         response = llm.invoke(prompt)
         return {
@@ -1559,7 +1560,7 @@ def answer_check_node(state: ResearchState) -> ResearchState:
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.0-flash",
             temperature=0.1,
-            google_api_key="AIzaSyCowWFDIENMNDTBtGm5HkvWzeXG9SpIboI"
+            google_api_key=GOOGLE_API_KEY
         )
         result = llm.invoke(prompt)
         answered = "yes" in result.content.lower()
@@ -1608,7 +1609,7 @@ def strategy_adaptation_node(state: ResearchState) -> ResearchState:
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.0-flash",
             temperature=0.4,
-            google_api_key="AIzaSyCowWFDIENMNDTBtGm5HkvWzeXG9SpIboI"
+            google_api_key=GOOGLE_API_KEY
         )
         result = llm.invoke(prompt)
         content = result.content.strip()
@@ -1684,7 +1685,7 @@ def visualization_node(state: ResearchState) -> ResearchState:
             llm = ChatGoogleGenerativeAI(
                 model="gemini-2.0-flash",
                 temperature=0.3,
-                google_api_key="AIzaSyCowWFDIENMNDTBtGm5HkvWzeXG9SpIboI"
+                google_api_key=GOOGLE_API_KEY
             )
             
             # Create Python agent with manual prompt to avoid parsing errors
@@ -3863,7 +3864,7 @@ async def chat(request: QueryRequest):
         if df is None or df.empty:
             raise HTTPException(status_code=400, detail="No valid data found in session. Please upload a CSV file.")
 
-        llm_model = ChatGoogleGenerativeAI(model="gemini-2.0-flash", google_api_key="AIzaSyCowWFDIENMNDTBtGm5HkvWzeXG9SpIboI")
+        llm_model = ChatGoogleGenerativeAI(model="gemini-2.0-flash", google_api_key=GOOGLE_API_KEY)
 
         # Convert DataFrame to Excel file temporarily for UnstructuredFileLoader
         import tempfile
@@ -4056,7 +4057,7 @@ async def chat(request: QueryRequest):
                             """
                             
                             # Generate enhanced analysis using Gemini
-                            genai.configure(api_key="AIzaSyCowWFDIENMNDTBtGm5HkvWzeXG9SpIboI")
+                            genai.configure(api_key=GOOGLE_API_KEY)
                             model = genai.GenerativeModel("gemini-2.0-flash")
                             gemini_response = model.generate_content(
                                 [analysis_prompt, img_plot],
